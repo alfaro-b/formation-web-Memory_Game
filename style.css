@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+
+    width: 90%;
+    max-width: 40rem;
+
+    margin: 2rem auto;
+}
+
+.card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    background-color: #2d2d2d;
+    border: 0.1rem solid #555;
+    border-radius: 0.6rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.card-back {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #61dafb;
+}
+
+.card img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    display: none;
+}
+
+.card.flipped .card-back {
+    display: none;
+}
+
+.card.flipped img {
+    display: block;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h1::before {
+    content: "< ";
+    color: #61dafb;
+}
+
+h1::after {
+    content: " />";
+    color: #61dafb;
+}
+
+body > p {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.game-info p {
+    background-color: #2d2d2d;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 0;
+}
+
+.game-info span {
+    color: #61dafb;
+    font-weight: bold;
+}
+
+.restart-btn {
+    background-color: #61dafb;
+    color: #1e1e1e;
+    border: none;
+    border-radius: 0.5rem;
+
+    padding: 0.8rem 1.5rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.2s;
+}
+
+.restart-btn:hover {
+    transform: scale(1.05);
+}
