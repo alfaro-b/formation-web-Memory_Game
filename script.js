@@ -21,6 +21,7 @@ const gameBoard = document.querySelector(".game-board");
 
 let firstCard = null;
 let secondCard = null;
+let boardLocked = false;
 
 // Récupère les cartes mélangées et les insère dans le DOM
 for (let i = 0; i < cards.length; i++) {
@@ -42,6 +43,10 @@ for (let i = 0; i < cards.length; i++) {
     gameBoard.appendChild(card);
 
     card.addEventListener("click", function () {
+        // Empêche de cliquer pendant que deux cartes sont comparées
+        if (boardLocked) {
+            return;
+        }
         // Empêche de sélectionner deux fois la même carte
         if (card === firstCard) {
             return
@@ -62,6 +67,8 @@ for (let i = 0; i < cards.length; i++) {
                 secondCard = null;
 
             } else {
+
+                boardLocked = true;
                 // Retourne les cartes après 1 seconde si elles sont différentes
                 setTimeout(function () {
                     firstCard.classList.remove("flipped");
@@ -70,6 +77,7 @@ for (let i = 0; i < cards.length; i++) {
                     // Réinitialise la sélection pour le tour suivant
                     firstCard = null;
                     secondCard = null;
+                    boardLoked = false;
                 }, 1000);
             }
         }
