@@ -19,11 +19,13 @@ console.log(cards);
 // Récupère l'élément du DOM
 const gameBoard = document.querySelector(".game-board");
 const movesDisplay = document.querySelector("#moves");
+const pairsDisplay = document.querySelector('#pairs');
 
 let firstCard = null;
 let secondCard = null;
 let boardLocked = false;
 let moves = 0;
+let pairs = 0;
 
 // Récupère les cartes mélangées et les insère dans le DOM
 for (let i = 0; i < cards.length; i++) {
@@ -66,7 +68,9 @@ for (let i = 0; i < cards.length; i++) {
 
             // Compare les technologies des deux cartes
             if (firstCard.dataset.technology === secondCard.dataset.technology) {
-                console.log("Paire trouvée !");
+                // Incrémente le nombre de paires trouvées
+                pairs++;
+                pairsDisplay.textContent = pairs;
 
                 // Réinitialise la sélection pour le tour suivant
                 firstCard = null;
