@@ -54,6 +54,11 @@ for (let i = 0; i < difficultyButtons.length; i++) {
         pairsDisplay.textContent = pairs;
 
         numberOfPairs = Number(difficultyButtons[i].dataset.pairs);
+        if (numberOfPairs === 10) {
+            gameBoard.classList.add("hard");
+        } else {
+            gameBoard.classList.remove("hard");
+        }
         console.log(numberOfPairs);
         const selectedTechnologies = technologies.slice(0, numberOfPairs);
         console.log(selectedTechnologies);
