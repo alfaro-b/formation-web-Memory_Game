@@ -49,6 +49,10 @@ for (let i = 0; i < difficultyButtons.length; i++) {
 
 // Récupère les cartes mélangées et les insère dans le DOM
 function createCards() {
+
+    // Vide le plateau avant de créer de nouvelles cartes
+    gameBoard.innerHTML = "";
+    
     for (let i = 0; i < cards.length; i++) {
 
         const card = document.createElement("div");
