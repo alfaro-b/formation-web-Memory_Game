@@ -19,11 +19,16 @@ console.log(cards);
 // Récupère l'élément du DOM
 const gameBoard = document.querySelector(".game-board");
 
+let firstCard = null;
+let secondCard = null;
+
 // Récupère les cartes mélangées et les insère dans le DOM
 for (let i = 0; i < cards.length; i++) {
 
     const card = document.createElement("div");
     card.classList.add("card");
+    // Stocke la technologie associée à la carte
+    card.dataset.technology = cards[i];
 
     const back = document.createElement("span");
     back.textContent = "< />";
@@ -38,6 +43,27 @@ for (let i = 0; i < cards.length; i++) {
 
     card.addEventListener("click", function () {
     card.classList.add("flipped");
+
+        if (firstCard === null) {
+            firstCard = card;
+        } else {
+            secondCard = card;
+
+            // Compare les technologies des deux cartes
+            if (firstCard.dataset.technology === secondCard.dataset.technology) {
+                console.log("Paire trouvée !");
+            } else {
+                // Retourne les cartes après 1 seconde si elles sont différentes
+                setTimeout(function () {
+                    firstCard.classList.remove("flipped");
+                    secondCard.classList.remove("flipped");
+
+                    // Réinitialise la sélection pour le tour suivant
+                    firstCard = null;
+                    secondCard = null;
+                }, 1000);
+            }
+        }
     });
 
 }
