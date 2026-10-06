@@ -20,6 +20,7 @@ console.log(cards);
 const gameBoard = document.querySelector(".game-board");
 const movesDisplay = document.querySelector("#moves");
 const pairsDisplay = document.querySelector('#pairs');
+const restartButton = document.querySelector(".restart-btn");
 
 let firstCard = null;
 let secondCard = null;
@@ -101,4 +102,9 @@ for (let i = 0; i < cards.length; i++) {
     });
 
 }
+
+// Recharge la page pour démarrer une nouvelle partie
+restartButton.addEventListener("click", function () {
+    location.reload();
+});
 
