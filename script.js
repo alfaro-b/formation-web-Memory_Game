@@ -72,6 +72,13 @@ for (let i = 0; i < cards.length; i++) {
                 pairs++;
                 pairsDisplay.textContent = pairs;
 
+                // Vérifie si touttes les paires sont trouvées, fin de partie.
+                if (pairs === technologies.length) {
+                    const gameOver = document.createElement("div");
+                    gameOver.textContent = "Bravo ! Partie terminée en " + moves + " coups.";
+                    document.body.appendChild(gameOver);
+                }
+
                 // Réinitialise la sélection pour le tour suivant
                 firstCard = null;
                 secondCard = null;
