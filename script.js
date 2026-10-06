@@ -42,7 +42,11 @@ for (let i = 0; i < cards.length; i++) {
     gameBoard.appendChild(card);
 
     card.addEventListener("click", function () {
-    card.classList.add("flipped");
+        // Empêche de sélectionner deux fois la même carte
+        if (card === firstCard) {
+            return
+        }
+        card.classList.add("flipped");
 
         if (firstCard === null) {
             firstCard = card;
@@ -52,6 +56,11 @@ for (let i = 0; i < cards.length; i++) {
             // Compare les technologies des deux cartes
             if (firstCard.dataset.technology === secondCard.dataset.technology) {
                 console.log("Paire trouvée !");
+
+                // Réinitialise la sélection pour le tour suivant
+                firstCard = null;
+                secondCard = null;
+
             } else {
                 // Retourne les cartes après 1 seconde si elles sont différentes
                 setTimeout(function () {
