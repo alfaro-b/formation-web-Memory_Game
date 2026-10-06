@@ -52,6 +52,12 @@ for (let i = 0; i < cards.length; i++) {
         if (boardLocked) {
             return;
         }
+
+        // Empêche de sélectionner une carte déjà trouvée
+        if (card.classList.contains("found")) {
+            return;
+        }
+
         // Empêche de sélectionner deux fois la même carte
         if (card === firstCard) {
             return
@@ -69,6 +75,11 @@ for (let i = 0; i < cards.length; i++) {
 
             // Compare les technologies des deux cartes
             if (firstCard.dataset.technology === secondCard.dataset.technology) {
+
+                // Marque les deux cartes comme trouvées
+                firstCard.classList.add("found");
+                secondCard.classList.add("found");
+
                 // Incrémente le nombre de paires trouvées
                 pairs++;
                 pairsDisplay.textContent = pairs;
