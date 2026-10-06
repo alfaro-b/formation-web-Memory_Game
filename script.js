@@ -4,7 +4,11 @@ const technologies = [
     "javascript-original.svg",
     "git-original.svg",
     "java-original.svg",
-    "python-original.svg"
+    "python-original.svg",
+    "django-plain.svg",
+    "mariadb-original.svg",
+    "mysql-original.svg",
+    "sonarqube-original.svg"
 ];
 
 // Créer les paires de cartes : 
