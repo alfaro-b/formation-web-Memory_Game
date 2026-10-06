@@ -32,6 +32,13 @@ let flipTimeout = null;
 for (let i = 0; i < difficultyButtons.length; i++) {
 
     difficultyButtons[i].addEventListener("click", function () {
+        // Retire la sélection de tous les boutons de difficulté
+        for (let j = 0; j < difficultyButtons.length; j++) {
+            difficultyButtons[j].classList.remove("selected");
+        }
+
+        // Marque le niveau choisi comme sélectionné
+        difficultyButtons[i].classList.add("selected");
 
         // Annule le retournement des cartes s'il est encore en attente
         clearTimeout(flipTimeout);

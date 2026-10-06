@@ -110,6 +110,11 @@ body > p {
     color: #1e1e1e;
 }
 
+.difficulty button.selected {
+    background-color: #61dafb;
+    color: #1e1e1e;
+}
+
 .game-info {
     display: flex;
     justify-content: center;
