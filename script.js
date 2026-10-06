@@ -23,15 +23,30 @@ const restartButton = document.querySelector(".restart-btn");
 let firstCard = null;
 let secondCard = null;
 let boardLocked = false;
+let numberOfPairs = 0;
 let moves = 0;
 let pairs = 0;
+let flipTimeout = null;
 
 // En fonction de la difficulté choisie, construit le tableau avec 6, 8 ou 10 technologies 
 for (let i = 0; i < difficultyButtons.length; i++) {
 
     difficultyButtons[i].addEventListener("click", function () {
 
-        const numberOfPairs = difficultyButtons[i].dataset.pairs;
+        // Annule le retournement des cartes s'il est encore en attente
+        clearTimeout(flipTimeout);
+
+        // Réinitialise la partie si on change de niveau
+        firstCard = null;
+        secondCard = null;
+        boardLocked = false;
+        moves = 0;
+        pairs = 0;
+
+        movesDisplay.textContent = moves;
+        pairsDisplay.textContent = pairs;
+
+        numberOfPairs = Number(difficultyButtons[i].dataset.pairs);
         console.log(numberOfPairs);
         const selectedTechnologies = technologies.slice(0, numberOfPairs);
         console.log(selectedTechnologies);
@@ -52,7 +67,7 @@ function createCards() {
 
     // Vide le plateau avant de créer de nouvelles cartes
     gameBoard.innerHTML = "";
-    
+
     for (let i = 0; i < cards.length; i++) {
 
         const card = document.createElement("div");
@@ -109,7 +124,7 @@ function createCards() {
                     pairsDisplay.textContent = pairs;
 
                     // Vérifie si touttes les paires sont trouvées, fin de partie.
-                    if (pairs === technologies.length) {
+                    if (pairs === numberOfPairs) {
                         const gameOver = document.createElement("div");
                         gameOver.classList.add("game-over");
                         gameOver.textContent = "Bravo ! Partie terminée en " + moves + " coups.";
@@ -124,7 +139,7 @@ function createCards() {
 
                     boardLocked = true;
                     // Retourne les cartes après 1 seconde si elles sont différentes
-                    setTimeout(function () {
+                    flipTimeout = setTimeout(function () {
                         firstCard.classList.remove("flipped");
                         secondCard.classList.remove("flipped");
 
