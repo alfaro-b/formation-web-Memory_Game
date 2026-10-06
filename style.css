@@ -85,6 +85,31 @@ body > p {
     margin-top: 0;
 }
 
+.difficulty {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.difficulty button {
+    background-color: #2d2d2d;
+    color: white;
+    border: 0.1rem solid #61dafb;
+    border-radius: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.difficulty button:hover {
+    transform: scale(1.05);
+    background-color: #61dafb;
+    color: #1e1e1e;
+}
+
 .game-info {
     display: flex;
     justify-content: center;
