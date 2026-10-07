@@ -53,6 +53,13 @@ for (let i = 0; i < difficultyButtons.length; i++) {
         movesDisplay.textContent = moves;
         pairsDisplay.textContent = pairs;
 
+        // On supprime message de victoire si existe
+        const gameOver = document.querySelector(".game-over");
+
+        if (gameOver !== null) {
+            gameOver.remove();
+        }
+
         numberOfPairs = Number(difficultyButtons[i].dataset.pairs);
         gameBoard.classList.remove("medium", "hard");
 
