@@ -1,3 +1,7 @@
+/* =========================
+   BASE / MOBILE FIRST
+   ========================= */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #1e1e1e;
@@ -29,14 +33,16 @@ h1::after {
 }
 
 
-/* Difficulté */
+/* =========================
+   DIFFICULTÉ - FLEXBOX
+   ========================= */
 
 .difficulty {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: clamp(0.4rem, 2vw, 1rem);
     margin-top: 1rem;
-    flex-wrap: wrap;
 }
 
 .difficulty button {
@@ -66,12 +72,14 @@ h1::after {
 }
 
 
-/* Informations de la partie */
+/* =========================
+   INFORMATIONS - FLEXBOX
+   ========================= */
 
 .game-info {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
 
     gap: clamp(0.5rem, 3vw, 2rem);
     margin-top: 1rem;
@@ -95,26 +103,43 @@ h1::after {
 }
 
 
-/* Plateau */
+/* =========================
+   PLATEAU - CSS GRID
+   Mobile par défaut
+   ========================= */
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    /* Facile : 12 cartes = 3 x 4 */
+    grid-template-columns: repeat(3, 1fr);
 
     gap: clamp(0.4rem, 1.5vw, 1rem);
 
-    width: min(90%, 40rem);
+    width: 95%;
+    max-width: 40rem;
 
     margin: clamp(0.7rem, 2vw, 1rem) auto;
 }
 
-.game-board.hard {
-    grid-template-columns: repeat(5, 1fr);
-    width: min(95%, 50rem);
+
+/* Moyen : 16 cartes = 4 x 4 */
+
+.game-board.medium {
+    grid-template-columns: repeat(4, 1fr);
 }
 
 
-/* Cartes */
+/* Difficile : 20 cartes = 4 x 5 sur mobile */
+
+.game-board.hard {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+/* =========================
+   CARTES
+   ========================= */
 
 .card {
     width: 100%;
@@ -157,16 +182,20 @@ h1::after {
 }
 
 
-/* Bouton recommencer */
+/* =========================
+   BOUTON RECOMMENCER
+   ========================= */
 
 .restart-btn {
     background-color: #61dafb;
     color: #1e1e1e;
+
     border: none;
     border-radius: 0.5rem;
 
     padding: clamp(0.6rem, 1.5vw, 0.8rem)
              clamp(1rem, 2vw, 1.5rem);
+
     margin-top: 1rem;
 
     font-size: clamp(0.9rem, 2vw, 1rem);
@@ -182,10 +211,13 @@ h1::after {
 }
 
 
-/* Fin de partie */
+/* =========================
+   FIN DE PARTIE
+   ========================= */
 
 .game-over {
     background-color: #2d2d2d;
+
     border: 0.1rem solid #61dafb;
     border-radius: 0.6rem;
 
@@ -200,23 +232,54 @@ h1::after {
 }
 
 
-/* Téléphones */
+/* =========================
+   TABLETTES
+   À partir de 768px
+   ========================= */
 
-@media (max-width: 480px) {
+@media (min-width: 768px) {
 
     .game-board {
-        grid-template-columns: repeat(3, 1fr);
-        width: 95%;
+        /* Facile : 12 cartes = 4 x 3 */
+        grid-template-columns: repeat(4, 1fr);
+        width: 90%;
     }
 
-    .game-board.medium,
-    .game-board.hard {
+    .game-board.medium {
+        /* Moyen : 16 cartes = 4 x 4 */
         grid-template-columns: repeat(4, 1fr);
-        width: 95%;
+    }
+
+    .game-board.hard {
+        /* Difficile : 20 cartes = 5 x 4 */
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 50rem;
     }
 }
 
-/* Écrans avec peu de hauteur */
+
+/* =========================
+   GRANDS ÉCRANS
+   À partir de 1024px
+   ========================= */
+
+@media (min-width: 1024px) {
+
+    .game-board {
+        max-width: 40rem;
+    }
+
+    .game-board.hard {
+        max-width: 50rem;
+    }
+}
+
+
+/* =========================
+   ÉCRANS AVEC PEU DE HAUTEUR
+   Ex : téléphone en paysage
+   ========================= */
+
 @media (max-height: 600px) {
 
     body {
@@ -272,12 +335,19 @@ h1::after {
 
     .restart-btn {
         padding: 0.3rem 0.8rem;
+        margin-top: 0.3rem;
         font-size: 0.8rem;
     }
 }
 
-/* Tablettes en paysage */
-@media (orientation: landscape) and (min-height: 601px) and (max-height: 850px) {
+
+/* =========================
+   TABLETTES EN PAYSAGE
+   ========================= */
+
+@media (orientation: landscape)
+       and (min-height: 601px)
+       and (max-height: 850px) {
 
     h1 {
         font-size: 1.6rem;
@@ -315,8 +385,8 @@ h1::after {
     }
 
     .game-board.medium {
-    grid-template-columns: repeat(4, 1fr);
-    width: min(90%, 65vh);
+        grid-template-columns: repeat(4, 1fr);
+        width: min(90%, 65vh);
     }
 
     .game-board.hard {
@@ -325,7 +395,8 @@ h1::after {
     }
 
     .restart-btn {
-        padding: 0.5rem 1rem; 
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
         font-size: 0.9rem;
     }
 }
